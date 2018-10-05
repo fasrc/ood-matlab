@@ -1,7 +1,9 @@
 ---
 batch_connect:
-  template: vnc
+  template: "vnc"
 script:
+  reservation_id: <%= custom_reservation %>
+  email: <%= custom_email_address %>
   native:
-    resources:
-      nodes: "<%= bc_num_slots.blank? ? "1" : bc_num_slots.to_i %><%= node_type %>"
+    - "--mem=<%= custom_memory_per_node.blank? ? 1000 : custom_memory_per_node.to_s %>"
+    - "--cpus-per-task=<%= custom_num_cores.blank? ? 1 : custom_num_cores.to_i %>"
