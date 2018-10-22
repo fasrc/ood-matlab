@@ -3,8 +3,8 @@
 ![GitHub Release](https://img.shields.io/github/release/osc/bc_osc_matlab.svg)
 [![GitHub License](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
-A Batch Connect app designed for OSC OnDemand that launches MATLAB within an
-Owens batch job.
+A Batch Connect app designed for OSC OnDemand that launches MATLAB within a
+batch job on the Odyssey3 Cluster.
 
 ## Prerequisites
 
