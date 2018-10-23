@@ -22,7 +22,8 @@ attributes:
     label: "Project"
     help: "You can leave this blank if **not** in multiple projects."
   bc_queue:
-    value: "general"
+    value: "remotedesktop"
+    help: "currently only available for the dedicated remotedesktop partition"
   custom_email_address:
     label: email for status notification
     widget: text_field
