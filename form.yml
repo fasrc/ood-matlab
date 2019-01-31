@@ -1,47 +1,60 @@
 ---
+title: "Matlab"
 cluster: "odyssey3"
-form:
-  - version
-  - node_type
-  - bc_vnc_resolution
-  - desktop
-  - bc_account
-  - bc_queue
-  - bc_num_hours
-  - bc_email_on_started
-  - custom_email_address
-  - custom_memory_per_node
-  - custom_num_cores
-  - custom_reservation
 attributes:
+  desktop: "xfce"
+  bc_num_slots: null
   bc_vnc_resolution:
     required: true
-  desktop: "xfce"
-  node_type: "compute"
   bc_account:
-    label: "Project"
-    help: "You can leave this blank if **not** in multiple projects."
-  bc_queue:
-    value: "remotedesktop"
-    help: "currently only available for the dedicated remotedesktop partition"
+    help: "Only relevant if you have multiple slurm accounts. It can be left blank otherwise"
+  custom_time:
+    label: "Allocated Time (expressed in MM , or HH:MM:SS , or DD-HH:MM). Maximum for this partition is 7 days"
+    value: "04:00:00"
+    widget: text_field
+  bc_queue: "remotedesktop"
   custom_email_address:
     label: email for status notification
     widget: text_field
   custom_memory_per_node:
-    label: Memory per node
-    value: 2000
-    widget: text_field
+    label: Memory Allocation in GB
+    value: 4
+    min:   4
+    step:  1
+    max:   16
+    widget: number_field
   custom_num_cores:
     label: Number of cores
-    value: 2
+    value: 1
+    min:   1
+    step:  1
+    max:   8
+    widget: number_field
     help: "Number of Cpus to allocate"
   custom_reservation:
     label: Reservation
     widget: text_field
-  version:
+  matlab_version:
     widget: select
-    label: "MATLAB version"
-    help: "This defines the version of MATLAB you want to load."
+    label: "Matlab Version"
     options:
-      - [ "R2018a", "matlab/R2018a-fasrc01" ]
-      - [ "R2017a", "matlab/R2017a-fasrc02" ]
+      - [ "matlab R2018b",  "matlab/R2018b-fasrc01" ]
+      - [ "matlab R2018a",  "matlab/R2018a-fasrc01" ]
+      - [ "matlab R2017b",  "matlab/R2017b-fasrc01" ]
+      - [ "matlab R2017a",  "matlab/R2017a-fasrc02" ]
+      - [ "matlab R2016b",  "matlab/R2016b-fasrc02" ]
+      - [ "matlab R2016a",  "matlab/R2016a-fasrc02" ]
+
+form:
+  - desktop
+  - bc_vnc_resolution
+  - bc_num_slots
+  - bc_queue
+  - custom_memory_per_node
+  - custom_num_cores
+  - custom_time
+  - matlab_version
+  - custom_email_address
+  - bc_email_on_started
+  - custom_reservation
+  - bc_account
