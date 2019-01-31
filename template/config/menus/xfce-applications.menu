@@ -13,7 +13,6 @@
     </Include>
 
     <Layout>
-        <Filename>firefox.desktop</Filename>
         <Filename>xfce4-terminal.desktop</Filename>
         <Filename>Thunar.desktop</Filename>
     </Layout>
