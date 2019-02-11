@@ -28,8 +28,17 @@ cd "${HOME}"
 #
 
 # Load the required environment
+<%- if context.matlab_version === "/n/scratchssdlfs/rc_admin/francesco/matlab-2018-el7-7.4.1708.img matlab -softwareopengl" -%>
+
+singularity exec <%= context.matlab_version %>
+
+
+<%- else -%>
+
 module load <%= context.matlab_version %>
-matlab -desktop
+matlab -desktop -softwareopengl 
+
+<%- end  -%>
 
 # Launch COMSOL Multiphysics
 ##- if gpu -

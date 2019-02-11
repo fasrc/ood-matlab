@@ -37,8 +37,9 @@ attributes:
   matlab_version:
     widget: select
     label: "Matlab Version"
+    help: "Matlab R2018b will run as a container and load faster than the centrally installed version. that is the recommended"
     options:
-      - [ "matlab R2018b",  "matlab/R2018b-fasrc01" ]
+      - [ "matlab R2018b",  "/n/scratchssdlfs/rc_admin/francesco/matlab-2018-el7-7.4.1708.img matlab -softwareopengl" ]
       - [ "matlab R2018a",  "matlab/R2018a-fasrc01" ]
       - [ "matlab R2017b",  "matlab/R2017b-fasrc01" ]
       - [ "matlab R2017a",  "matlab/R2017a-fasrc02" ]
