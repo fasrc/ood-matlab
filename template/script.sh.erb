@@ -3,18 +3,30 @@
 # Clean the environment
 module purge
 
+set -x
+
+export MTLB_WORKDIR=/scratch/$USER/$SLURM_JOBID 
+mkdir -p $MTLB_WORKDIR
+
+export MATLAB_PREFDIR=/dev/shm/$USER/$SLURM_JOBID ; 
+mkdir -p $MATLAB_PREFDIR 
+
 # Set working directory to home directory
-cd "${HOME}"
+cd $MTLB_WORKDIR
 
 #
 # Launch Xfce Window Manager and Panel
 #
 
+
+cat > myrun.sh <<EOF
+#!/bin/bash -l
+
 (
   export SEND_256_COLORS_TO_REMOTE=1
   export XDG_CONFIG_HOME="<%= session.staged_root.join("config") %>"
   export XDG_DATA_HOME="<%= session.staged_root.join("share") %>"
-  export XDG_CACHE_HOME="$(mktemp -d)"
+  export XDG_CACHE_HOME="\$(mktemp -d)"
   module restore
   set -x
   xfwm4 --compositor=off --daemon --sm-client-disable
@@ -23,33 +35,21 @@ cd "${HOME}"
   xfce4-panel --sm-client-disable
 ) &
 
-#
-# Start COMSOL Multiphysics
-#
+## don't ask why we need to invoke xfce4 terminal calling xfce4-terminal here .... 
+## it just does not work without
+xfce4-terminal -e "xfce4-terminal -e matlab "
 
-set -x
+#wait 
+EOF
+
+chmod +x myrun.sh
+
 
 # Load the required environment
-<%- if context.matlab_version === "/n/scratchssdlfs/rc_admin/francesco/matlab-2018-el7-7.4.1708.img matlab -softwareopengl" -%>
+#export SINGULARITYENV_MATLAB_PREFDIR
+singularity exec <%= context.matlab_version %> ./myrun.sh  
 
-singularity exec <%= context.matlab_version %>
 
 
-<%- else -%>
 
-module load <%= context.matlab_version %>
-matlab -desktop -softwareopengl 
 
-<%- end  -%>
-
-# Launch COMSOL Multiphysics
-##- if gpu -
-##module load intel/16.0.3 virtualgl
-##module list
-##set -x
-##vglrun comsol
-##- else -
-##module list
-##set -x
-##comsol -3drend sw
-##- end -
