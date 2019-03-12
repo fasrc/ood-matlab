@@ -5,6 +5,9 @@ subcategory: GUIs
 role: batch_connect
 description: |
   This app will launch a [MATLAB] GUI on [Odyssey3].
+  Matlab R2018b will run as a container and load faster than the centrally installed version. 
+  We will add other versions to this app asap. 
+  Until then if you need a different version just open a regular Remote Desktop session and load the version you want via the module system. 
 
   [MATLAB]: https://www.mathworks.com/products/matlab.html
   [Odyssey3]: https://www.rc.fas.harvard.edu/resources/odyssey-architecture/

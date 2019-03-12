@@ -12,7 +12,8 @@ attributes:
     label: "Allocated Time (expressed in MM , or HH:MM:SS , or DD-HH:MM). Maximum for this partition is 7 days"
     value: "04:00:00"
     widget: text_field
-  bc_queue: "remotedesktop"
+  bc_queue: 
+    value: "shared"
   custom_email_address:
     label: email for status notification
     widget: text_field
@@ -37,14 +38,10 @@ attributes:
   matlab_version:
     widget: select
     label: "Matlab Version"
-    help: "Matlab R2018b will run as a container and load faster than the centrally installed version. that is the recommended"
+    help: "R2018b minimal contains only the core Matlab, while  R2018b full contains all the toolboxes we have available. Minimal  will load a bit faster thab full, but you will not be able to use other toolboxes."
     options:
-      - [ "matlab R2018b",  "/n/scratchssdlfs/rc_admin/francesco/matlab-2018-el7-7.4.1708.img matlab -softwareopengl" ]
-      - [ "matlab R2018a",  "matlab/R2018a-fasrc01" ]
-      - [ "matlab R2017b",  "matlab/R2017b-fasrc01" ]
-      - [ "matlab R2017a",  "matlab/R2017a-fasrc02" ]
-      - [ "matlab R2016b",  "matlab/R2016b-fasrc02" ]
-      - [ "matlab R2016a",  "matlab/R2016a-fasrc02" ]
+      - [ "matlab R2018b minimal",  "/n/scratchssdlfs/rc_admin/francesco/matlab2018bminimal-xfce-el7-7.4.1708.img" ]
+      - [ "matlab R2018b full",  "/n/scratchssdlfs/rc_admin/francesco/matlab2018b-xfce-el7-7.4.1708.img" ]
 
 form:
   - desktop
