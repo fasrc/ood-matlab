@@ -22,14 +22,14 @@ attributes:
     value: 4
     min:   4
     step:  1
-    max:   16
+    max:   128
     widget: number_field
   custom_num_cores:
     label: Number of cores
     value: 1
     min:   1
     step:  1
-    max:   8
+    max:   32
     widget: number_field
     help: "Number of Cpus to allocate"
   custom_reservation:
