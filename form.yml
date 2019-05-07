@@ -32,6 +32,14 @@ attributes:
     max:   32
     widget: number_field
     help: "Number of Cpus to allocate"
+  custom_num_gpus:
+    label: Number of GPUs
+    value: 0
+    min:   0
+    step:  1
+    max:   8
+    widget: number_field
+    help: "Number of GPUs to allocate. Available only on GPU enabled partitions"
   custom_reservation:
     label: Reservation
     widget: text_field
@@ -50,6 +58,7 @@ form:
   - bc_queue
   - custom_memory_per_node
   - custom_num_cores
+  - custom_num_gpus
   - custom_time
   - matlab_version
   - custom_email_address

@@ -44,10 +44,21 @@ EOF
 
 chmod +x myrun.sh
 
+## am I trying to run on GPUs?
+export SING_GPU=""
+
+<%- if !context.custom_num_gpus.to_i.zero? -%>
+export SING_GPU="--nv"
+<%- end -%>
+
+## bind some extra stuff to be able to talk to slurm from within the container
+export SING_BINDS=" -B /etc/nsswitch.conf -B /etc/sssd/ -B /var/lib/sss -B /etc/slurm -B /slurm -B /var/run/munge "
+
+singularity exec $SING_GPU $SING_BINDS 
 
 # Load the required environment
 #export SINGULARITYENV_MATLAB_PREFDIR
-singularity exec <%= context.matlab_version %> ./myrun.sh  
+singularity exec   $SING_GPU $SING_BINDS <%= context.matlab_version %> ./myrun.sh  
 
 
 
