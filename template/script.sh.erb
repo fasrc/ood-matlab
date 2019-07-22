@@ -14,6 +14,10 @@ mkdir -p $MATLAB_PREFDIR
 # Set working directory to home directory
 cd $MTLB_WORKDIR
 
+cat > java.opts <<EOF
+-Dsun.java2d.xrender=false
+EOF
+
 #
 # Launch Xfce Window Manager and Panel
 #
