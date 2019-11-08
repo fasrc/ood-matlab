@@ -48,8 +48,8 @@ attributes:
     label: "Matlab Version"
     help: "R2018b minimal contains only the core Matlab, while  R2018b full contains all the toolboxes we have available. Minimal  will load a bit faster thab full, but you will not be able to use other toolboxes."
     options:
-      - [ "matlab R2018b minimal",  "/n/scratchssdlfs/rc_admin/francesco/matlab2018bminimal-xfce-el7-7.4.1708.img" ]
-      - [ "matlab R2018b full",  "/n/scratchssdlfs/rc_admin/francesco/matlab2018b-xfce-el7-7.4.1708.img" ]
+      - [ "matlab R2018b minimal",  "/n/helmod/apps/centos7/Singularity/matlab/matlab2018bminimal-xfce-el7-7.4.1708.img" ]
+      - [ "matlab R2018b full",  "/n/helmod/apps/centos7/Singularity/matlab/matlab2018b-xfce-el7-7.4.1708.img" ]
 
 form:
   - desktop
