@@ -58,8 +58,6 @@ export SING_GPU="--nv"
 ## bind some extra stuff to be able to talk to slurm from within the container
 export SING_BINDS=" -B /etc/nsswitch.conf -B /etc/sssd/ -B /var/lib/sss -B /etc/slurm -B /slurm -B /var/run/munge  -B `which sbatch ` -B `which srun ` -B `which sacct ` -B `which scontrol `  -B `which scancel` -B `which squeue` -B `which sinfo`  -B /usr/lib64/slurm/ "
 
-singularity exec $SING_GPU $SING_BINDS 
-
 # Load the required environment
 #export SINGULARITYENV_MATLAB_PREFDIR
 singularity exec   $SING_GPU $SING_BINDS <%= context.matlab_version %> ./myrun.sh  
