@@ -49,6 +49,7 @@ attributes:
     label: "Matlab Version"
     help: "R2018b minimal contains only the core Matlab, while  R2018b full contains all the toolboxes we have available. Minimal  will load a bit faster thab full, but you will not be able to use other toolboxes."
     options:
+      - [ "matlab R2020a minimal",  "/n/singularity_images/OOD/matlab/current/Matlab2020a_small-xfce-el7-7.6.1810.sif" ]
       - [ "matlab R2018b minimal",  "/n/singularity_images/OOD/matlab/current/matlab2018bminimal-xfce-el7-7.4.1708.img" ]
       - [ "matlab R2018b full",  "/n/singularity_images/OOD/matlab/current/matlab2018b-xfce-el7-7.4.1708.img" ]
 
