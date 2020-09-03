@@ -41,7 +41,7 @@ cat > myrun.sh <<EOF
 
 ## don't ask why we need to invoke xfce4 terminal calling xfce4-terminal here .... 
 ## it just does not work without
-xfce4-terminal -e "xfce4-terminal -e matlab "
+xfce4-terminal --minimize -e "xfce4-terminal -e matlab " 2>/dev/null
 
 #wait 
 EOF
