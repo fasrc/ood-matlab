@@ -52,9 +52,9 @@ attributes:
 
       Version R2020a Minimal contains only the core Matlab. It will be a faster to load and it is recommended if you need only the core functionality.
 
-      Version R2020a Full contains all the toolboxes we have license for. It will be a bit slower to startup, so we recommend to use that only if the toolkit you need is not available in R2020a Standard.
+      Version R2020a Full contains all the toolboxes covered by our license. It will be a bit slower to startup, so we recommend to use that only if the toolkit you need is not available in R2020a Standard.
 
-      To get complete details of what toolkits are installed in each version, you can start a session and type the matlab command *ver*
+      To get complete details of what toolkits are installed in each version, you can start a session and type the matlab command:<br> *>> ver*
 
     options:
       - [ "matlab R2020a Standard",  "/n/singularity_images/OOD/matlab/current/Matlab2020a_standard-xfce-el7-7.6.1810.sif" ]
