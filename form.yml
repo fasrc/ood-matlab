@@ -48,20 +48,20 @@ attributes:
     widget: select
     label: "Matlab Version"
     help: |
-      Matlab R2020a Standard contains the core Matlab and some of the most commonly used toolkits. That's the version we recommend.
-
-      Version R2020a Minimal contains only the core Matlab. It will be a faster to load and it is recommended if you need only the core functionality.
-
-      Version R2020a Full contains all the toolboxes covered by our license. It will be a bit slower to startup, so we recommend to use that only if the toolkit you need is not available in R2020a Standard.
-
-      To get complete details of what toolkits are installed in each version, you can start a session and type the matlab command:<br> *>> ver*
-
+      Loading the Matlab module for requested version
     options:
-      - [ "matlab R2020a Standard",  "/n/singularity_images/OOD/matlab/current/Matlab2020a_standard-xfce-el7-7.6.1810.sif" ]
-      - [ "matlab R2020a Minimal",  "/n/singularity_images/OOD/matlab/current/Matlab2020a_minimal-xfce-el7-7.6.1810.sif" ]
-      - [ "matlab R2020a Full",  "/n/singularity_images/OOD/matlab/current/Matlab2020a_full-xfce-el7-7.6.1810.sif" ]
-      - [ "matlab R2018b Minimal",  "/n/singularity_images/OOD/matlab/current/matlab2018bminimal-xfce-el7-7.4.1708.img" ]
-      - [ "matlab R2018b Full",  "/n/singularity_images/OOD/matlab/current/matlab2018b-xfce-el7-7.4.1708.img" ]
+      - ["matlab R2021a" , "matlab/R2021a-fasrc01"]
+      - ["matlab R2020b", "matlab/R2020b-fasrc01"]
+      - ["matlab R2020a", "matlab/R2020a-fasrc01"] 
+      - ["matlab R2019b", "matlab/R2019b-fasrc01"]
+      - ["matlab R2019a", "matlab/R2019a-fasrc01"]
+      - ["matlab R2018b", "matlab/R2018b-fasrc01"]
+      - ["matlab R2018a", "matlab/R2018b-fasrc01"]
+      #- [ "matlab R2020a Standard",  "/n/singularity_images/OOD/matlab/current/Matlab2020a_standard-xfce-el7-7.6.1810.sif" ]
+      #- [ "matlab R2020a Minimal",  "/n/singularity_images/OOD/matlab/current/Matlab2020a_minimal-xfce-el7-7.6.1810.sif" ]
+      #- [ "matlab R2020a Full",  "/n/singularity_images/OOD/matlab/current/Matlab2020a_full-xfce-el7-7.6.1810.sif" ]
+      #- [ "matlab R2018b Minimal",  "/n/singularity_images/OOD/matlab/current/matlab2018bminimal-xfce-el7-7.4.1708.img" ]
+      #- [ "matlab R2018b Full",  "/n/singularity_images/OOD/matlab/current/matlab2018b-xfce-el7-7.4.1708.img" ]
 
 form:
   - desktop
