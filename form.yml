@@ -49,14 +49,6 @@ attributes:
     label: "Matlab Version"
     help: |
       Loading the Matlab module for requested version
-      #Matlab R2020a Standard contains the core Matlab and some of the most commonly used toolkits. That's the version we recommend.
-
-      #Version R2020a Minimal contains only the core Matlab. It will be a faster to load and it is recommended if you need only the core functionality.
-
-      #Version R2020a Full contains all the toolboxes covered by our license. It will be a bit slower to startup, so we recommend to use that only if the toolkit you need is not available in R2020a Standard.
-
-      #To get complete details of what toolkits are installed in each version, you can start a session and type the matlab command:<br> *>> ver*
-
     options:
       - ["matlab R2021a" , "matlab/R2021a-fasrc01"]
       - ["matlab R2020b", "matlab/R2020b-fasrc01"]

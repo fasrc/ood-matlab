@@ -3,7 +3,7 @@
 # Clean the environment
 module purge
 
-set -x
+#set -x
 
 #export MTLB_WORKDIR=/scratch/$USER/$SLURM_JOBID 
 #mkdir -p $MTLB_WORKDIR
@@ -15,9 +15,9 @@ set -x
 #cd $MTLB_WORKDIR
 cd "${HOME}"
 
-cat > java.opts <<EOF
--Dsun.java2d.xrender=false
-EOF
+#cat > java.opts <<EOF
+#-Dsun.java2d.xrender=false
+#EOF
 
 #
 # Launch Xfce Window Manager and Panel
@@ -25,7 +25,8 @@ EOF
 
 
 #cat > myrun.sh <<EOF
-#!/bin/bash -l
+
+##!/bin/bash -l
 
 (
   export SEND_256_COLORS_TO_REMOTE=1
@@ -45,19 +46,16 @@ sleep 5
 ## don't ask why we need to invoke xfce4 terminal calling xfce4-terminal here .... 
 ## it just does not work without
 ##xfce4-terminal --minimize -e "xfce4-terminal -e matlab " 2>/dev/null
-xfce4-terminal -e "xfce4-terminal -e matlab " 2>/dev/null
+#xfce4-terminal -e "xfce4-terminal -e matlab " 2>/dev/null
 
 #wait 
 #EOF
 
-chmod +x myrun.sh
+#chmod +x myrun.sh
 
 ## am I trying to run on GPUs?
 #export SING_GPU=""
 
-#<%- if !context.custom_num_gpus.to_i.zero? -%>
-#export SING_GPU="--nv"
-#<%- end -%>
 
 ## bind some extra stuff to be able to talk to slurm from within the container
 #export SING_BINDS=" -B /etc/nsswitch.conf -B /etc/sssd/ -B /var/lib/sss -B /etc/slurm -B /slurm -B /var/run/munge  -B `which sbatch ` -B `which srun ` -B `which sacct ` -B `which scontrol `  -B `which scancel` -B `which squeue` -B `which sinfo`  -B /usr/lib64/slurm/ "
@@ -67,7 +65,7 @@ chmod +x myrun.sh
 #singularity exec   $SING_GPU $SING_BINDS <%= context.matlab_version %> ./myrun.sh  
 
 module load <%= context.matlab_version %>
-$MATLAB_HOME/bin/matlab  -desktop -softwareopengl &
+$MATLAB_HOME/bin/matlab  -desktop -softwareopengl
 
 
 
