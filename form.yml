@@ -50,7 +50,8 @@ attributes:
     help: |
       Loading the Matlab module for requested version
     options:
-      - ["matlab R2021a" , "matlab/R2021a-fasrc01"]
+      - ["matlab R2022a", "matlab/R2022a-fasrc01"]
+      - ["matlab R2021a", "matlab/R2021a-fasrc01"]
       - ["matlab R2020b", "matlab/R2020b-fasrc01"]
       - ["matlab R2020a", "matlab/R2020a-fasrc01"] 
       - ["matlab R2019b", "matlab/R2019b-fasrc01"]
