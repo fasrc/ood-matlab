@@ -65,7 +65,14 @@ sleep 5
 #singularity exec   $SING_GPU $SING_BINDS <%= context.matlab_version %> ./myrun.sh  
 
 module load <%= context.matlab_version %>
-$MATLAB_HOME/bin/matlab  -desktop -softwareopengl
+
+# set oom_score_adj to 1000 in job script (parent) so it app is terminated in
+# the event the rsession (child) OOMs to avoid the appearance of the app
+# continuing to function in OOD/Slurm with a 502 Proxy error on reconnect
+echo 1000 > /proc/self/oom_score_adj
+(
+  echo 0 > /proc/self/oom_score_adj; $MATLAB_HOME/bin/matlab  -desktop -softwareopengl
+)
 
 
 
