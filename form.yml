@@ -20,7 +20,7 @@ attributes:
 
       [Slurm partition](https://www.rc.fas.harvard.edu/resources/running-jobs/#Slurm_partitions) name (e.g., **shared** ), or comma-separated list of partition names (e.g., **shared,test** )
   custom_email_address:
-    label: email for status notification
+    label: Email address for status notification
     widget: text_field
   custom_memory_per_node:
     label: Memory Allocation in GB
