@@ -54,6 +54,7 @@ attributes:
     help: |
       Loading the Matlab module for requested version
     options:
+      - ["matlab R2021a", "matlab/R2021a-fasrc01"]
       - ["matlab R2022b", "matlab/R2022b-fasrc01"]
 
   custom_reservation:
@@ -68,6 +69,16 @@ attributes:
       *sbatch -A, --account=\<account\>*
 
       Leave blank if you do not have multiple Slurm accounts
+  extra_slurm:
+    label: Additional Slurm options
+    widget: text_field
+    help: |
+      additional slurm options (**long format option only**)<br>
+      Example :  --constraint=intel --exclusive
+
+      Please make sure the options you select are compatible with other fields in the form.<br>Also, please make sure you use **long format option only**<br>(e.g. --nodelist=holy7c24502 instead of -w holy7c24502)
+
+      If you are not familiar with Slurm we recommend to leave this blank.
 
 form:
   - desktop
@@ -83,3 +94,4 @@ form:
   - bc_email_on_started
   - custom_reservation
   - bc_account
+  - extra_slurm
