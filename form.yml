@@ -56,7 +56,6 @@ attributes:
     options:
       - ["matlab R2021a", "matlab/R2021a-fasrc01"]
       - ["matlab R2022b", "matlab/R2022b-fasrc01"]
-      - ["matlab R2024a", "matlab/R2024a-fasrc01"]
 
   custom_reservation:
     label: Reservation
