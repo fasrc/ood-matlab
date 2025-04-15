@@ -1,0 +1,96 @@
+---
+title: "Matlab"
+cluster: "odyssey3"
+attributes:
+  desktop: "xfce"
+  bc_num_slots: null
+  bc_vnc_resolution:
+    value: "1024x768"
+    required: true
+  custom_time:
+    label: "Allocated Time (expressed in MM , or HH:MM:SS , or DD-HH:MM)"
+    value: "04:00:00"
+    widget: text_field
+    help: |
+      *sbatch -t, --time=\<time\>*
+  bc_queue: 
+    value: "shared"
+    help: |
+      *sbatch -p, --partition=\<partition_names\>*
+
+      [Slurm partition](https://www.rc.fas.harvard.edu/resources/running-jobs/#Slurm_partitions) name (e.g., **shared** ), or comma-separated list of partition names (e.g., **shared,test** )
+  custom_email_address:
+    label: Email address for status notification
+    widget: text_field
+  custom_memory_per_node:
+    label: Memory Allocation in GB
+    value: 8
+    min:   4
+    step:  1
+    widget: number_field
+    help: |
+      *sbatch --mem=\<size\>G*
+  custom_num_cores:
+    label: "Number of CPUs (cores) to allocate"
+    value: 1
+    min:   1
+    step:  1
+    widget: number_field
+    help: |
+      *sbatch -c, --cpus-per-task=\<ncpus\>*
+  custom_num_gpus:
+    label: "Number of GPUs to allocate. Available only on GPU enabled partitions"
+    value: 0
+    min:   0
+    step:  1
+    max:   8
+    widget: number_field
+    help: |
+      *sbatch --gres=gpu:\<ngpus\>*
+  matlab_version:
+    widget: select
+    label: "Matlab Version"
+    help: |
+      Loading the Matlab module for requested version
+    options:
+      - ["matlab R2021a", "matlab/R2021a-fasrc01"]
+      - ["matlab R2022b", "matlab/R2022b-fasrc01"]
+
+  custom_reservation:
+    label: Reservation
+    widget: text_field
+    help: |
+      *sbatch --reservation=\<name\>*
+
+      Leave blank if you do not have a Slurm reservation
+  bc_account:
+    help: |
+      *sbatch -A, --account=\<account\>*
+
+      Leave blank if you do not have multiple Slurm accounts
+  extra_slurm:
+    label: Additional Slurm options
+    widget: text_field
+    help: |
+      additional slurm options (**long format option only**)<br>
+      Example :  --constraint=intel --exclusive
+
+      Please make sure the options you select are compatible with other fields in the form.<br>Also, please make sure you use **long format option only**<br>(e.g. --nodelist=holy7c24502 instead of -w holy7c24502)
+
+      If you are not familiar with Slurm we recommend to leave this blank.
+
+form:
+  - desktop
+  - bc_vnc_resolution
+  - bc_num_slots
+  - bc_queue
+  - custom_memory_per_node
+  - custom_num_cores
+  - custom_num_gpus
+  - custom_time
+  - matlab_version
+  - custom_email_address
+  - bc_email_on_started
+  - custom_reservation
+  - bc_account
+  - extra_slurm
