@@ -73,6 +73,15 @@ sleep 5
 #export SINGULARITYENV_MATLAB_PREFDIR
 #singularity exec   $SING_GPU $SING_BINDS <%= context.matlab_version %> ./myrun.sh  
 
+## if additional modules are requested, 
+<%- unless context.modules.blank? -%>
+module purge
+  <%- context.modules.to_s.split(",").each do |mymodule| %>
+    module load <%= mymodule %>
+  <%- end -%>
+module list
+<%- end -%>
+
 module load <%= context.matlab_version %>
 
 # set oom_score_adj to 1000 in job script (parent) so it app is terminated in

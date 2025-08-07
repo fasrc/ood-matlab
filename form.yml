@@ -55,6 +55,7 @@ attributes:
     options:
       - ["matlab R2021a", "matlab/R2021a-fasrc01"]
       - ["matlab R2022b", "matlab/R2022b-fasrc01"]
+      - ["matlab R2024b", "matlab/R2024b-fasrc01"]
 
   custom_reservation:
     label: Reservation
@@ -68,6 +69,15 @@ attributes:
       *sbatch -A, --account=\<account\>*
 
       Leave blank if you do not have multiple Slurm accounts
+  modules:
+    label: Extra Modules
+    widget: text_field
+    help: |
+      Comma separated list of modules you would like to load before starting Matlab.<br>
+      Example :  cuda/10.0.130-fasrc01,nccl/2.3.7-fasrc01
+      
+      Please make sure the modules selected can be loaded correctly in the order you listed.
+
   extra_slurm:
     label: Additional Slurm options
     widget: text_field
@@ -89,8 +99,9 @@ form:
   - custom_num_gpus
   - custom_time
   - matlab_version
+  - modules
+  - custom_reservation
+  - extra_slurm
+  - bc_account
   - custom_email_address
   - bc_email_on_started
-  - custom_reservation
-  - bc_account
-  - extra_slurm
