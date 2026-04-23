@@ -89,9 +89,17 @@ module load <%= context.matlab_version %>
 # continuing to function in OOD/Slurm with a 502 Proxy error on reconnect
 echo 1000 > /proc/self/oom_score_adj
 (
-  echo 0 > /proc/self/oom_score_adj; $MATLAB_HOME/bin/matlab  -desktop -softwareopengl
-)
+  tmpdir="$(mktemp -d)"
+  mkdir -p "${tmpdir}/.MathWorks/ServiceHost" "${tmpdir}/.MATLABConnector" "${HOME}/.MathWorks/ServiceHost" "${HOME}/.MATLABConnector"
+  trap 'rm -rf "${tmpdir}"' EXIT
 
+  bwrap \
+    --dev-bind / / \
+    --bind "${tmpdir}/.MathWorks/ServiceHost" "${HOME}/.MathWorks/ServiceHost" \
+    --bind "${tmpdir}/.MATLABConnector" "${HOME}/.MATLABConnector" \
+    --chdir "${PWD}" \
+    bash -lc 'echo 0 > /proc/self/oom_score_adj; exec "$MATLAB_HOME/bin/matlab" -desktop -softwareopengl'
+)
 
 
 
