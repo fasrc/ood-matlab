@@ -1,72 +1,49 @@
-# Batch Connect - OSC MATLAB
+# Open OnDemand Matlab
 
-![GitHub Release](https://img.shields.io/github/release/osc/bc_osc_matlab.svg)
-[![GitHub License](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
+<!-- Describe the app from a user's perspective. This is a simplied version of Overview -->
+## FASRC users
 
-A Batch Connect app designed for OSC OnDemand that launches MATLAB within a
-batch job on the Odyssey3 Cluster.
+Matlab is an Open OnDemand app that launches Matlab as an interactive session on
+a compute node. Matlab is a computing platform that is used for engineering and
+scientific applications like data analysis, signal and image processing, control
+systems, wireless communications, and robotics.
 
-## Prerequisites
+<!-- Link any relevant FASRC docs -->
+<!-- ### Using [app name] -->
+### FASRC documentation:
 
-This Batch Connect app requires the following software be installed on the
-**compute nodes** that the batch job is intended to run on (**NOT** the
-OnDemand node):
+- [MATLAB on FASRC clusters](https://docs.rc.fas.harvard.edu/kb/matlab/)
+- [Parallel MATLAB with PCT and
+  DCS](https://docs.rc.fas.harvard.edu/kb/parallel-matlab-pct-dcs/)
 
-- [MATLAB] R2016b+
-- [Xfce Desktop] 4+
+<!-- Link how to create Sandbox -->
+### Sandbox app
 
-For VNC server support:
+For how to create a Sandbox app, see the [Developing your own app using Open
+OnDemand](https://docs.rc.fas.harvard.edu/kb/developing-apps-on-ood/)
+documentation.
 
-- [TurboVNC] 2.1+
-- [websockify] 0.8.0+
+## Appverse overview
 
-For hardware rendering support:
+> [!NOTE]  
+> This section is intended for sys-admins, developers, and power users.
 
-- [X server]
-- [VirtualGL] 2.3+
+Matlab is an Open OnDemand Batch Connect app that launches Matlab as an
+interactive desktop session on HPC clusters. It is designed for researchers who
+need data Matlab is a computing platform that is used for engineering and
+scientific applications like data analysis, signal and image processing, control
+systems, wireless communications, and robotics. 
 
-**Optional** software:
+This app uses the Batch Connect `basic` template with Slurm.
 
-- [Lmod] 6.0.1+ or any other `module purge` and `module load <modules>` based
-  CLI used to load appropriate environments within the batch job
+- **Batch Connect template:** `basic`
+- **Scheduler:** Slurm
 
-[MATLAB]: https://www.mathworks.com/
-[Xfce Desktop]: https://xfce.org/
-[TurboVNC]: http://www.turbovnc.org/
-[websockify]: https://github.com/novnc/websockify
-[X server]: https://www.x.org/
-[VirtualGL]: http://www.virtualgl.org/
-[Lmod]: https://www.tacc.utexas.edu/research-development/tacc-projects/lmod
+## Screenshots
 
-## Install
+<!-- A screenshot helps deployers verify their installation and helps users understand what they'll get. -->
+<!-- Place images in a screenshots/ or docs/ directory. -->
 
-Use git to clone this app and checkout the desired branch/version you want to
-use:
 
-```sh
-scl enable git19 -- git clone <repo>
-cd <dir>
-scl enable git19 -- git checkout <tag/branch>
-```
 
-You will not need to do anything beyond this as all necessary assets are
-installed. You will also not need to restart this app as it isn't a Passenger
-app.
 
-To update the app you would:
-
-```sh
-cd <dir>
-scl enable git19 -- git fetch
-scl enable git19 -- git checkout <tag/branch>
-```
-
-Again, you do not need to restart the app as it isn't a Passenger app.
-
-## Contributing
-
-1. Fork it ( https://github.com/OSC/bc_osc_matlab/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
