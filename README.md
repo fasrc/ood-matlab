@@ -44,7 +44,9 @@ This app uses the Batch Connect `basic` template with Slurm.
 <!-- A screenshot helps deployers verify their installation and helps users understand what they'll get. -->
 <!-- Place images in a screenshots/ or docs/ directory. -->
 
-![Matlab running in browser](images/matlab_desktop.png)
+A [Matlab 3D plot example](https://www.mathworks.com/help/matlab/visualize/creating-3-d-plots.html)
+
+![Matlab 3D plot example](images/matlab_desktop.png)
 
 ## Features
 
