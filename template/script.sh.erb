@@ -98,7 +98,7 @@ echo 1000 > /proc/self/oom_score_adj
     --bind "${tmpdir}/.MathWorks/ServiceHost" "${HOME}/.MathWorks/ServiceHost" \
     --bind "${tmpdir}/.MATLABConnector" "${HOME}/.MATLABConnector" \
     --chdir "${PWD}" \
-    bash -lc 'echo 0 > /proc/self/oom_score_adj; exec "$MATLAB_HOME/bin/matlab" -desktop -softwareopengl'
+    bash -lc 'echo 0 > /proc/self/oom_score_adj; exec matlab -desktop -softwareopengl'
 )
 
 
