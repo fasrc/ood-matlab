@@ -3,7 +3,7 @@
 <!-- Describe the app from a user's perspective. This is a simplied version of Overview -->
 ## FASRC users
 
-Matlab is an Open OnDemand app that launches Matlab as an interactive session on
+Matlab is an pen OnDemand app that launches Matlab as an interactive session on
 a compute node. Matlab is a computing platform that is used for engineering and
 scientific applications like data analysis, signal and image processing, control
 systems, wireless communications, and robotics.
@@ -28,15 +28,18 @@ documentation.
 > [!NOTE]  
 > This section is intended for sys-admins, developers, and power users.
 
-Matlab is an Open OnDemand Batch Connect app that launches Matlab as an
+Matlab is an [Open OnDemand](https://openondemand.org/) Batch Connect app that
+launches [Matlab](https://www.mathworks.com/products/matlab.html) as an
 interactive desktop session on HPC clusters. It is designed for researchers who
 need data Matlab is a computing platform that is used for engineering and
 scientific applications like data analysis, signal and image processing, control
 systems, wireless communications, and robotics. 
 
-This app uses the Batch Connect `basic` template with Slurm.
+This app uses the Batch Connect `turbovnc` template with Slurm and software
+OpenGL rendering.
 
-- **Batch Connect template:** `basic`
+- **Upstream project:** [MATLAB](https://www.mathworks.com/products/matlab.html)
+- **Batch Connect template:** `turbovnc`
 - **Scheduler:** Slurm
 
 ## Screenshots
@@ -52,27 +55,41 @@ A [Matlab 3D plot example](https://www.mathworks.com/help/matlab/visualize/creat
 
 <!-- List the key capabilities specific to THIS OOD app (not the upstream software). -->
 
-- Launches Matlab via VNC desktop on compute nodes
+- Launches MATLAB desktop GUI in a TurboVNC session with Xfce window manager
+- Multiple MATLAB versions (R2021a, R2022b, R2024b, R2025b) via `matlab/` module
 - Supports CPU and GPU execution
-- Configurable partition, memory, CPU cores, GPU cards, and wall time
-- Additional Slurm options pass-through (long format)
-- Reservation support and optional Slurm account
-- Email notification on job start
+- Configurable memory, CPU cores, GPU count, and wall time
 - Lmod module-based
+- Software OpenGL rendering (`-softwareopengl` flag)
+- Optional extra modules loading (comma-separated list)
+- Optional additional Slurm options pass-through (long format)
+- Optional reservation support for priority scheduling
+- Optional email notification on job start
+- OOM score management to prevent proxy errors on out-of-memory conditions
 
 ## Requirements
 
 ### Compute Node Software
 
 - Matlab Lmod module and Matlab license
-- Window manager XFCE
+- [Xfce Desktop](https://xfce.org/) 4+
 - [Slurm](https://slurm.schedmd.com/) job scheduler
+- [Lmod](https://www.tacc.utexas.edu/research-development/tacc-projects/lmod)
+  6.0.1+ or any other `module purge` and `module load <modules>` based CLI used
+  to load appropriate environments within the batch job
+
+### For VNC server support
+
+- [TurboVNC](http://www.turbovnc.org/) 2.1+
+- [websockify](https://github.com/novnc/websockify) 0.8.0+
 
 ### Open OnDemand
 
 - Open OnDemand v3.0+
 - [Slurm](https://slurm.schedmd.com/) job scheduler
-- [Lmod](https://lmod.readthedocs.io/en/latest/)
+- [Lmod](https://www.tacc.utexas.edu/research-development/tacc-projects/lmod)
+  6.0.1+ or any other `module purge` and `module load <modules>` based CLI used
+  to load appropriate environments within the batch job
 
 ## App Installation
 
@@ -174,7 +191,7 @@ To verify your installation:
 
 Contributions are welcome. To contribute:
 
-1. Fork this repository.
+1. [Fork this repository](https://github.com/fasrc/ood-matlab/fork).
 2. Create a feature branch (`git checkout -b feature/my-improvement`).
 3. Submit a pull request with a description of your changes.
 
