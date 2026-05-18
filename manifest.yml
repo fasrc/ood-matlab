@@ -11,8 +11,8 @@ description: |
   See FAS-RC [Matlab documentation] and Github [User_Codes] for examples on how to run Matlab in parallel.
 
   [MATLAB]: https://www.mathworks.com/products/matlab.html
-  [FASSE]: https://www.rc.fas.harvard.edu/services/cluster-computing/#Cluster_Name_FAS_Secure_Environment
-  [documentation]: https://docs.rc.fas.harvard.edu/kb/vdi-apps/#VDI_Remote_Desktop
+  [FASSE]: https://www.rc.fas.harvard.edu/services/cluster-computing/#FASSE
+  [documentation]: https://docs.rc.fas.harvard.edu/kb/vdi-apps/
   [Matlab documentation]: https://docs.rc.fas.harvard.edu/kb/parallel-matlab-pct-dcs/
   [User_codes]: https://github.com/fasrc/User_Codes/tree/master/Parallel_Computing/MATLAB/Example1
 
