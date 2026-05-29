@@ -35,7 +35,6 @@ attributes:
     value: 1
     min:   1
     step:  1
-    max:   64
     widget: number_field
     help: |
       *sbatch -c, --cpus-per-task=\<ncpus\>*
