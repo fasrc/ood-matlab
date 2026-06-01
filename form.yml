@@ -46,7 +46,7 @@ attributes:
     max:   8
     widget: number_field
     help: |
-      *sbatch --gpus=\<ngpus\>*
+      *sbatch --gres=gpu:\<ngpus\>*
   matlab_version:
     widget: select
     label: "Matlab Version"
