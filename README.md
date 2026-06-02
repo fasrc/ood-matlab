@@ -147,7 +147,7 @@ different scheduler, edit these accordingly:
 | `mem` | `custom_memory_per_node` |
 | `time` | `custom_time` |
 | `cpus-per-task` | `custom_num_cores` |
-| `gpus` | `custom_num_gpus` |
+| `gres=gpu:` | `custom_num_gpus` |
 
 #### `manifest.yml` attributes
 

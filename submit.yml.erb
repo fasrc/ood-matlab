@@ -10,7 +10,7 @@ script:
     - "--time=<%= custom_time.blank? ? "04:00:00" : custom_time.to_s %>"
     - "--cpus-per-task=<%= custom_num_cores.blank? ? 1 : custom_num_cores.to_i %>"
    <%- if !custom_num_gpus.to_i.zero? -%>
-    - "--gpus=<%= custom_num_gpus.to_i %>"
+    - "--gres=gpu:<%= custom_num_gpus.to_i %>"
    <%- end -%>
    <%- unless extra_slurm.blank? -%>
    <%- extra_slurm.split.each do |slurm_option| %>
