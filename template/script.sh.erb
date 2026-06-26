@@ -93,7 +93,6 @@ echo "matlab_year: $matlab_year"
 if [ "$matlab_year" -ge "2026" ]; then
     LAUNCH_COMMAND='matlab -desktop'
 else
-
     LAUNCH_COMMAND='matlab -desktop -softwareopengl'
 fi
 echo "LAUNCH_COMMAND: $LAUNCH_COMMAND"
