@@ -1,72 +1,241 @@
-# Batch Connect - OSC MATLAB
+# Open OnDemand Matlab
 
-![GitHub Release](https://img.shields.io/github/release/osc/bc_osc_matlab.svg)
-[![GitHub License](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
+<!-- Describe the app from a user's perspective. This is a simplied version of Overview -->
+## FASRC users
 
-A Batch Connect app designed for OSC OnDemand that launches MATLAB within a
-batch job on the Odyssey3 Cluster.
+Matlab is an pen OnDemand app that launches Matlab as an interactive session on
+a compute node. Matlab is a computing platform that is used for engineering and
+scientific applications like data analysis, signal and image processing, control
+systems, wireless communications, and robotics.
 
-## Prerequisites
+<!-- Link any relevant FASRC docs -->
+<!-- ### Using [app name] -->
+### FASRC documentation:
 
-This Batch Connect app requires the following software be installed on the
-**compute nodes** that the batch job is intended to run on (**NOT** the
-OnDemand node):
+- [MATLAB on FASRC clusters](https://docs.rc.fas.harvard.edu/kb/matlab/)
+- [Parallel MATLAB with PCT and
+  DCS](https://docs.rc.fas.harvard.edu/kb/parallel-matlab-pct-dcs/)
 
-- [MATLAB] R2016b+
-- [Xfce Desktop] 4+
+<!-- Link how to create Sandbox -->
+### Sandbox app
 
-For VNC server support:
+For how to create a Sandbox app, see the [Developing your own app using Open
+OnDemand](https://docs.rc.fas.harvard.edu/kb/developing-apps-on-ood/)
+documentation.
 
-- [TurboVNC] 2.1+
-- [websockify] 0.8.0+
+## Appverse overview
 
-For hardware rendering support:
+> [!NOTE]  
+> This section is intended for sys-admins, developers, and power users.
 
-- [X server]
-- [VirtualGL] 2.3+
+Matlab is an [Open OnDemand](https://openondemand.org/) Batch Connect app that
+launches [Matlab](https://www.mathworks.com/products/matlab.html) as an
+interactive desktop session on HPC clusters. It is designed for researchers who
+need data Matlab is a computing platform that is used for engineering and
+scientific applications like data analysis, signal and image processing, control
+systems, wireless communications, and robotics. 
 
-**Optional** software:
+This app uses the Batch Connect `turbovnc` template with Slurm and software
+OpenGL rendering.
 
-- [Lmod] 6.0.1+ or any other `module purge` and `module load <modules>` based
-  CLI used to load appropriate environments within the batch job
+- **Upstream project:** [MATLAB](https://www.mathworks.com/products/matlab.html)
+- **Batch Connect template:** `turbovnc`
+- **Scheduler:** Slurm
 
-[MATLAB]: https://www.mathworks.com/
-[Xfce Desktop]: https://xfce.org/
-[TurboVNC]: http://www.turbovnc.org/
-[websockify]: https://github.com/novnc/websockify
-[X server]: https://www.x.org/
-[VirtualGL]: http://www.virtualgl.org/
-[Lmod]: https://www.tacc.utexas.edu/research-development/tacc-projects/lmod
+## Screenshots
 
-## Install
+<!-- A screenshot helps deployers verify their installation and helps users understand what they'll get. -->
+<!-- Place images in a screenshots/ or docs/ directory. -->
 
-Use git to clone this app and checkout the desired branch/version you want to
-use:
+A [Matlab 3D plot example](https://www.mathworks.com/help/matlab/visualize/creating-3-d-plots.html)
 
-```sh
-scl enable git19 -- git clone <repo>
-cd <dir>
-scl enable git19 -- git checkout <tag/branch>
+![Matlab 3D plot example](images/matlab_desktop.png)
+
+## Features
+
+<!-- List the key capabilities specific to THIS OOD app (not the upstream software). -->
+
+- Launches MATLAB desktop GUI in a TurboVNC session with Xfce window manager
+- Multiple MATLAB versions (R2021a, R2022b, R2024b, R2025b) via `matlab/` module
+- Supports CPU and GPU execution
+- Configurable memory, CPU cores, GPU count, and wall time
+- Lmod module-based
+- Software OpenGL rendering (`-softwareopengl` flag)
+- Optional extra modules loading (comma-separated list)
+- Optional additional Slurm options pass-through (long format)
+- Optional reservation support for priority scheduling
+- Optional email notification on job start
+- OOM score management to prevent proxy errors on out-of-memory conditions
+
+## Requirements
+
+### Compute Node Software
+
+- Matlab Lmod module and Matlab license
+- [Xfce Desktop](https://xfce.org/) 4+
+- [Slurm](https://slurm.schedmd.com/) job scheduler
+- [Lmod](https://www.tacc.utexas.edu/research-development/tacc-projects/lmod)
+  6.0.1+ or any other `module purge` and `module load <modules>` based CLI used
+  to load appropriate environments within the batch job
+
+### For VNC server support
+
+- [TurboVNC](http://www.turbovnc.org/) 2.1+
+- [websockify](https://github.com/novnc/websockify) 0.8.0+
+
+### Open OnDemand
+
+- Open OnDemand v3.0+
+- [Slurm](https://slurm.schedmd.com/) job scheduler
+- [Lmod](https://www.tacc.utexas.edu/research-development/tacc-projects/lmod)
+  6.0.1+ or any other `module purge` and `module load <modules>` based CLI used
+  to load appropriate environments within the batch job
+
+## App Installation
+
+Please see the [References section](#software-installation) below for
+instructions on how to install the software that is launched by this App.
+
+### 1. Clone the repository
+
+```bash
+# Batch Connect apps:
+cd /var/www/ood/apps/sys
+
+git clone https://github.com/fasrc/ood-matlab.git
+cd ood-matlab
+
+# Pin to a release (recommended)
+git checkout v1.0.0
 ```
 
-You will not need to do anything beyond this as all necessary assets are
-installed. You will also not need to restart this app as it isn't a Passenger
-app.
+### 2. Configure for your site
 
-To update the app you would:
+<!-- Point deployers to the ONE place they need to edit. -->
+<!-- Batch Connect apps: document form.yml attributes -->
 
-```sh
-cd <dir>
-scl enable git19 -- git fetch
-scl enable git19 -- git checkout <tag/branch>
-```
+#### `form.yml` attributes
 
-Again, you do not need to restart the app as it isn't a Passenger app.
+Edit `form.yml` and update these values for your cluster:
+
+| Attribute | Description | FASRC settings | Change to |
+|-----------|-------------|---------| -----------|
+| `cluster` | Target cluster ID | `odyssey` | Your cluster name |
+| `desktop` |  | `xfce` | Your desktop implementation |
+| `bc_vnc_resolution` | Screen resolution | user-defined; default 1024x768| Your preferred resolution |
+| `bc_num_slots` | Number of nodes or processors (depending on the type of scheduler) | `Null`, FASRC uses `custom_num_cores` instead | |
+| `bc_queue` | Default scheduler partition | user-defined; default `shared` | Your preferred partition |
+| `custom_memory_per_node` | Memory per job (GB) | user-defined; default: `8` | Your preferred memory allocation |
+| `custom_num_cores` | Number of cores | user-defined; default `2` | Your preferred default number of cores |
+| `custom_num_gpus` | Number of GPUs | user-defined; default `0` | Your preferred default number of GPUs |
+| `custom_time` | Maximum wall time (HH:MM:SS) | user-defined; default `04:00:00` | Your preferred default time |
+| `matlab_version` | Matlab module to load on compute node | Multiple versions; e.g. `matlab/R2025b-fasrc01` | Your `matlab` module |
+| `modules` | **Optional** Extra Lmod modules to load on the compute node before starting Matlab | user-defined | |
+| `custom_reservation` | **Optional** Slurm reservation `--reservation` | user-defined | |
+| `extra_slurm` | **Optional** Extra slurm option (long-format) | user-defined | |
+| `bc_account` | **Optional** Slurm account `-A`, `--account` | user-defined | |
+| `custom_email_address` | **Optional** email address for status notificationl used along with `bc_email_on_started` | user-defined | |
+| `bc_email_on_started` | **Optional** sends email to `custom_email_address` when job starts | user-defined | |
+
+#### `submit.yml.erb` attributes
+
+[submit.yml.erb](submit.yml.erb) uses slurm-specific variables. If you use a
+different scheduler, edit these accordingly:
+
+| Slurm variable | `forml.yml` attribute |
+|----------------|-----------------------|
+| `mem` | `custom_memory_per_node` |
+| `time` | `custom_time` |
+| `cpus-per-task` | `custom_num_cores` |
+| `gres=gpu:` | `custom_num_gpus` |
+
+#### `manifest.yml` attributes
+
+Edit `manifest.yml` and update these values for your organization:
+
+| Attribute | Change to |
+|-----------|-----------|
+| `description` | Your cluster and your documentation |
+
+### 3. Verify
+
+<!-- Batch Connect: -->
+No OOD restart is needed (Batch Connect apps are detected automatically). Visit
+your OOD dashboard and look for **Matlab** under **Interactive Apps > Desktop
+Apps**.
+
+## Troubleshooting
+
+### Job starts but app doesn't appear (Batch Connect)
+
+1. Check the job's `output.log` in `~/ondemand/data/sys/YOUR-APP/`
+2. Verify the module loads correctly: `module load software/1.0`
+3. For VNC apps, verify the window manager is installed: `which xfwm4`
+
+### "Module not found" error
+
+The module name in `form.yml` doesn't match your system. Run `module spider
+software` to find the correct name and update the `modules` attribute.
+
+### Connection timeout
+
+The app may need more time to start. Increase the connection timeout or check
+that the compute node can open the required port.
+
+## Testing
+
+<!-- Where has this app been deployed and verified? -->
+
+| Site | Operating System* | OOD Version | Scheduler | Status |
+|------|------------------|-------------|-----------|--------|
+| FASRC | Rocky 8.10 | 3.1 | Slurm 25.11 | Tested |
+| FASRC | Rocky 8.10 | 4.0 | Slurm 25.11 | Tested |
+
+> [!NOTE]
+> \*Operating system of compute nodes
+
+<!-- How can a deployer verify it works? -->
+To verify your installation:
+
+1. Launch the app from the OOD dashboard with default settings
+2. Confirm the application loads in the browser
+
+## Known Limitations
+
+<!-- Be honest about what doesn't work or hasn't been tested. -->
+
+- Multi-node jobs are not supported
+- Only tested on Centos 7 and Rocky 8; may not work on Ubuntu.
 
 ## Contributing
 
-1. Fork it ( https://github.com/OSC/bc_osc_matlab/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+Contributions are welcome. To contribute:
+
+1. [Fork this repository](https://github.com/fasrc/ood-matlab/fork).
+2. Create a feature branch (`git checkout -b feature/my-improvement`).
+3. Submit a pull request with a description of your changes.
+
+For bugs or feature requests, [open an issue](https://github.com/fasrc/ood-matlab/issues).
+
+This app is part of the [OOD Appverse](https://ondemand.connectci.org/affinity-groups/ood-appverse). Join the [Appverse Affinity Group](https://ondemand.connectci.org/affinity-groups/ood-appverse) to connect with other contributors.
+
+## References
+
+<!-- Credit upstream projects and any code you borrowed. -->
+
+- [MATLAB](https://www.mathworks.com/products/matlab.html) — the application launched by this OOD app.
+- [Open OnDemand](https://openondemand.org/) — the HPC portal framework.
+
+### Software Installation
+
+- [MATLAB installation
+  guide](https://www.mathworks.com/help/install/ug/install-products-with-internet-connection.html).
+
+## License
+
+[MIT License](LICENSE.txt).
+
+## Acknowledgments
+
+This work is supported by [FASRC](https://www.rc.fas.harvard.edu) at Harvard
+Univesity.
