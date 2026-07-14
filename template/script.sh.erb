@@ -16,7 +16,7 @@ echo "==============================================================="
 # Clean the environment
 module purge
 
-#set -x
+set -x
 
 #export MTLB_WORKDIR=/scratch/$USER/$SLURM_JOBID 
 #mkdir -p $MTLB_WORKDIR
@@ -115,9 +115,17 @@ echo "LAUNCH_COMMAND: $LAUNCH_COMMAND"
 # continuing to function in OOD/Slurm with a 502 Proxy error on reconnect
 echo 1000 > /proc/self/oom_score_adj
 (
-  echo 0 > /proc/self/oom_score_adj; $LAUNCH_COMMAND
-)
+  tmpdir="$(mktemp -d)"
+  mkdir -p "${tmpdir}/.MathWorks/ServiceHost" "${tmpdir}/.MATLABConnector" "${HOME}/.MathWorks/ServiceHost" "${HOME}/.MATLABConnector"
+  trap 'rm -rf "${tmpdir}"' EXIT
 
+  bwrap \
+    --dev-bind / / \
+    --bind "${tmpdir}/.MathWorks/ServiceHost" "${HOME}/.MathWorks/ServiceHost" \
+    --bind "${tmpdir}/.MATLABConnector" "${HOME}/.MATLABConnector" \
+    --chdir "${PWD}" \
+    bash -lc "echo 0 >| /proc/self/oom_score_adj; exec ${LAUNCH_COMMAND}"
+)
 
 
 
